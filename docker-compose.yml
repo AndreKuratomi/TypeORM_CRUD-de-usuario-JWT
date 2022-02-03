@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: node_container
+    image: node
+    build: .
+    ports:
+      - 8080:8080
+    enviroment: [
+        PGUSER=abkuratomi
+        PGPASSWORD=12345
+        PGDATABASE=defaultdb
+        PGHOST=db,
+      ]
+    depends_on:
+      - db
+
+  db:
+    container_name: postgres_container
+    image: postgres
+    ports: [5432:5432]
+    enviroment: [
+        POSTGRES_USER=abkuratomi
+        POSTGRES_PASSWORD=12345
+        POSTGRES_DB=defaultdb,
+      ]
