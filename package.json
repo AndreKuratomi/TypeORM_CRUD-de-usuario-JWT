@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "André Kuratomi <andrekuratomi@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev node_modules/typeorm/cli.js"
+  },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.14",
