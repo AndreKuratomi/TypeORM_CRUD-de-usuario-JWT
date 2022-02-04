@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity()
-export default class Users {
+export default class User {
   @PrimaryGeneratedColumn()
   readonly id!: string;
 

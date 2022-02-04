@@ -1,3 +1,3 @@
-import Users from "./users.entity";
+import User from "./user.entity";
 
-export default Users;
+export default User;
