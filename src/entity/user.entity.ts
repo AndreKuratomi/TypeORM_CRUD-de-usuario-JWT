@@ -19,14 +19,20 @@ export default class User {
   isAdmin!: boolean;
 
   @Column()
-  createdOn!: Date;
+  readonly createdOn!: Date;
 
   @Column()
-  updatedOn!: Date;
+  readonly updatedOn!: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuid();
+    }
+    if (!this.createdOn) {
+      this.createdOn = new Date();
+    }
+    if (!this.updatedOn) {
+      this.updatedOn = new Date();
     }
   }
 }
