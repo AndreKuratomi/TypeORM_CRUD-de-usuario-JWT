@@ -1,15 +1,13 @@
-import UserRepository from "../repository/user.repository";
 import { getCustomRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 
+import UserRepository from "../repository/user.repository";
+
 interface IUserRequest {
-  //   id: string;
   name: string;
   email: string;
   password: string;
   isAdmin: boolean;
-  //   createdOn: Date;
-  //   updatedOn: Date;
 }
 
 class UserRegisterService {
