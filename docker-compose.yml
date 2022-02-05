@@ -7,8 +7,12 @@ services:
     build: .
     ports:
       - 3000:8080 #maquinaLocal:conteiner
-    environment:
-      [PGUSER=abkuratomi, PGPASSWORD=12345, PGDATABASE=defaultdb, PGHOST=db]
+    environment: [
+        PGUSER=abkuratomi,
+        PGPASSWORD=12345,
+        PGDATABASE=defaultdb,
+        PGHOST=db,
+      ] #mascarar esses dados sensíveis
     depends_on:
       - db
 
@@ -16,5 +20,8 @@ services:
     container_name: another_postgres_container
     image: postgres
     ports: [5432:5432]
-    environment:
-      [POSTGRES_USER=abkuratomi, POSTGRES_PASSWORD=12345, POSTGRES_DB=defaultdb]
+    environment: [
+        POSTGRES_USER=abkuratomi,
+        POSTGRES_PASSWORD=12345,
+        POSTGRES_DB=defaultdb,
+      ] #idem
