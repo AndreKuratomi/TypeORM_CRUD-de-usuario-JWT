@@ -1,5 +1,6 @@
+/* eslint-disable quotes */
 import { ConnectionOptions } from "typeorm";
-import User from "../entitiy";
+import User from "../entity";
 
 const database: ConnectionOptions = {
   type: "postgres",
