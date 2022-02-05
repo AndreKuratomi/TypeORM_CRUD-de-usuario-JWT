@@ -7,7 +7,7 @@ class RegisterUserController {
       const { email, name, password, isAdmin } = request.body;
 
       const userRegisterService = new UserRegisterService();
-      // ONLY ONE CAN BE ADMIN!
+
       const user = await userRegisterService.execute({
         name,
         email,
