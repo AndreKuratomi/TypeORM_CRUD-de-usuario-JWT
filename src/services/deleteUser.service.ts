@@ -32,7 +32,7 @@ class DeleteUserService {
 
     // await userRepository.delete(id);
 
-    return "User deleted with success";
+    return {"mensagem": "User deleted with success"};
   }
 }
 

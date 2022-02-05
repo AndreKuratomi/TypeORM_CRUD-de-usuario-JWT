@@ -10,7 +10,7 @@ interface IUserLogin {
   password: string;
 }
 
-class UserLoginService {
+class LoginUserService {
   async execute({ email, password }: IUserLogin) {
     const userRepository = getCustomRepository(UserRepository);
 
@@ -39,3 +39,5 @@ class UserLoginService {
     return userToken;
   }
 }
+
+export default LoginUserService;
