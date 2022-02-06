@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 
 import UserRepository from "../repository/user.repository";
 
-export default isUserAdmin = (uuid) => {
+export const isUserAdmin = (uuid) => {
   const usersRepository = getCustomRepository(UserRepository);
 
   const adminCandidate = usersRepository.findOne({ uuid });
