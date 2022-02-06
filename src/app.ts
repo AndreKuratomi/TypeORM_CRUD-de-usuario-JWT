@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 /* eslint-disable quotes */
 import express, { Express } from "express";
 import router from "./routes";

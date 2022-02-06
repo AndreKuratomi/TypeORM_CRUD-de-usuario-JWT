@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable quotes */
 import { Router } from "express";
 
 import RegisterUserController from "./controllers/registerUser.controller";
