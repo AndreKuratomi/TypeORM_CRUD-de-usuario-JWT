@@ -2,6 +2,7 @@
 import { getCustomRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 
+import User from "../entity";
 import UserRepository from "../repository/user.repository";
 
 interface IUserRequest {
@@ -35,7 +36,7 @@ class UserRegisterService {
 
     const hashing = await bcrypt.hash(password, 10);
 
-    const user = userRepository.create({ name, email, isAdmin });
+    const user = userRepository.create(new User(name, email, isAdmin));
 
     await userRepository.save(user);
 

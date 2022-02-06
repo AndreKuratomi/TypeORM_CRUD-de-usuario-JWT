@@ -1,40 +1,45 @@
 /* eslint-disable indent */
 /* eslint-disable quotes */
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { v4 as uuid } from "uuid";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from "typeorm";
+// import { v4 as uuid } from "uuid";
 
-@Entity()
+@Entity("users")
 export default class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   readonly id!: string;
 
   @Column()
-  name!: string;
+  name: string;
 
   @Column()
-  email!: string;
+  email: string;
 
   @Column()
-  password!: string;
+  password: string;
 
   @Column()
-  isAdmin!: boolean;
+  isAdmin: boolean;
 
-  @Column()
-  readonly createdOn!: Date;
+  @CreateDateColumn()
+  createdOn!: Date;
 
-  @Column()
-  readonly updatedOn!: Date;
+  @CreateDateColumn()
+  updatedOn!: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-    if (!this.createdOn) {
-      this.createdOn = new Date();
-    }
-    if (!this.updatedOn) {
-      this.updatedOn = new Date();
-    }
+  constructor(
+    name: string,
+    email: string,
+    //  password: string,
+    isAdmin: boolean
+  ) {
+    this.name = name;
+    this.email = email;
+    // this.password = password;
+    this.isAdmin = isAdmin;
   }
 }
