@@ -1,4 +1,5 @@
-import express, {Express} from "express";
+/* eslint-disable quotes */
+import express, { Express } from "express";
 import router from "./routes";
 
 const app: Express = express();
