@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable object-curly-newline */
 import { Request, Response } from "express";
 import UserRegisterService from "../services/registerUser.service";
 
@@ -7,7 +10,7 @@ class RegisterUserController {
       const { email, name, password, isAdmin } = request.body;
 
       const userRegisterService = new UserRegisterService();
-      // ONLY ONE CAN BE ADMIN!
+
       const user = await userRegisterService.execute({
         name,
         email,

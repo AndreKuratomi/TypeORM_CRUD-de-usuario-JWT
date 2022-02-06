@@ -24,19 +24,19 @@ class LoginUserService {
       doesUserExist.password
     );
 
-    const token = jwt.sign({ email: email }, config.secret, {
-      expiresIn: config.expiresIn,
-    });
-
     if (!doesPasswordMatch) {
       throw new Error("Given password mismatch!");
     }
 
-    const userToken = userRepository.create({ token });
+    const token: string = jwt.sign({ email }, config.secret as string, {
+      expiresIn: config.expiresIn,
+    });
 
-    await userRepository.save(userToken);
+    // const userToken = userRepository.create({ token });
 
-    return userToken;
+    // await userRepository.save(userToken);
+
+    return token;
   }
 }
 

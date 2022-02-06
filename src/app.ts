@@ -1,7 +1,10 @@
-import express from "express";
-import router from "./router";
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
+/* eslint-disable quotes */
+import express, { Express } from "express";
+import router from "./routes";
 
-const app = express();
+const app: Express = express();
 
 app.use(express.json());
 app.use(router);
