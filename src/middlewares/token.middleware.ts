@@ -1,6 +1,9 @@
 /* eslint-disable quotes */
 /* eslint-disable import/prefer-default-export */
 import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
+
+import config from "../config/jwt.config";
 
 export const isTokenValid = (
   request: Request,
@@ -21,6 +24,13 @@ export const isTokenValid = (
     // throw new Error("No token used!");
     return response.status(401).json({ message: "No token used!" });
   }
+
+  jwt.verify(token, config.secret as string, (err: any) => {
+    if (err) {
+      // throw new Error("Invalid token!");
+      return response.status(401).json({ message: "Invalid token!" });
+    }
+  });
 
   return next();
 };
