@@ -36,7 +36,11 @@ class UserRegisterService {
 
     const hashing = await bcrypt.hash(password, 10);
 
-    const user = userRepository.create(new User(name, email, isAdmin));
+    password = hashing;
+
+    const user = userRepository.create(
+      new User(name, email, password, isAdmin)
+    );
 
     await userRepository.save(user);
 

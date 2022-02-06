@@ -5,11 +5,12 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import app from "./app";
-import database from "./config/database.config";
+// import database from "./config/database.config";
 
 const PORT = 3000;
 
-createConnection(database)
+createConnection()
+// database
   .then(() => {
     console.log("Database connected!");
     app.listen(PORT, () => {
