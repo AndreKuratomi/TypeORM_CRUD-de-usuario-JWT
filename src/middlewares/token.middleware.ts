@@ -1,25 +1,27 @@
-import { Request, Response } from "express";
-import { getCustomRepository } from "typeorm";
+/* eslint-disable quotes */
+/* eslint-disable import/prefer-default-export */
+import { NextFunction, Request, Response } from "express";
 
-// import isUserAdmin from "./admin.middleware";
-import UserRepository from "../repository/user.repository";
-
-export const isTokenValid = (req: Request, res: Response, next: any) => {
-  //   colocar num service?
-  const userRepository = getCustomRepository(UserRepository);
-
-  if (req.headers.authorization === undefined) {
-    throw new Error("Headers unabled!");
+export const isTokenValid = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  const auth = request.headers.authorization;
+  console.log(auth);
+  if (auth === undefined) {
+    // POR QUE AQUI NO MIDDLEWARE THROW NÂO FUNCIONA??
+    // throw new Error("Headers unabled!");
+    return response.status(401).json({ message: "Headers unabled!" });
   }
 
-  const token = req.headers.authorization.split(" ")[1];
+  const token = auth.split(" ")[1];
+  console.log(token);
 
   if (token === undefined) {
-    throw new Error("No token used!");
+    // throw new Error("No token used!");
+    return response.status(401).json({ message: "No token used!" });
   }
-
-  //   return token;
-  //
 
   return next();
 };
