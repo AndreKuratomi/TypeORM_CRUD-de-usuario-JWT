@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable quotes */
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import app from "./app";

@@ -2,11 +2,11 @@ version: "3.9"
 
 services:
   backend:
-    container_name: another_node_container
-    image: node
+    image: node:latest
+    restart: always
     build: .
     ports:
-      - 3000:8080 #maquinaLocal:conteiner
+      - 3000:4000 #maquinaLocal:conteiner
     environment: [
         PGUSER=abkuratomi,
         PGPASSWORD=12345,
@@ -17,11 +17,16 @@ services:
       - db
 
   db:
-    container_name: another_postgres_container
     image: postgres
+    restart: always
     ports: [5432:5432]
     environment: [
         POSTGRES_USER=abkuratomi,
         POSTGRES_PASSWORD=12345,
         POSTGRES_DB=defaultdb,
       ] #idem
+
+  adminer:
+    image: adminer
+    restart: always
+    ports: [8080:8080]
