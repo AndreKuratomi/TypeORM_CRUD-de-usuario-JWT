@@ -19,7 +19,7 @@ services:
   db:
     image: postgres
     restart: always
-    ports: [5432:5432]
+    ports: [5431:5432]
     environment: [
         POSTGRES_USER=abkuratomi,
         POSTGRES_PASSWORD=12345,

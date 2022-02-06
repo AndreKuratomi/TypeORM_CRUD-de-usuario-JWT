@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import { getCustomRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 

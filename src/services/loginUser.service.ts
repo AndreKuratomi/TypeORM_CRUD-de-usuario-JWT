@@ -3,7 +3,7 @@ import * as bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import UserRepository from "../repository/user.repository";
-import { config } from "../config/jwt.config";
+import config from "../config/jwt.config";
 
 interface IUserLogin {
   email: string;
