@@ -43,7 +43,7 @@ class UserRegisterService {
     const hashing = await bcrypt.hash(password, 10);
     password = hashing;
 
-    // COMO OMITIR A SENHA RECÉM CRIPTOGRAFADA SE PRECISO DELA PARA CRIPTOGRAFAR? COMO OMITÍ-LA DEPOIS DE CRIPTOGRAFÁ-LA?;
+    // COMO OMITIR A SENHA RECÉM CRIPTOGRAFADA SE ANTES PRECISO DELA NA INTERFACE PARA CRIPTOGRAFAR? COMO OMITÍ-LA DEPOIS DE CRIPTOGRAFÁ-LA?;
 
     const user = userRepository.create(
       new User(name, email, password, isAdmin)

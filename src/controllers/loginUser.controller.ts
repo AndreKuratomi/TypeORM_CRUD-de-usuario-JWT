@@ -7,12 +7,12 @@ class LoginUserController {
       const { email, password } = request.body;
 
       const loginUserService = new LoginUserService();
+      const user = await loginUserService.execute({ email, password });
+      console.log(user);
 
-      const user = loginUserService.execute({ email, password });
-
-      return response.json(user);
+      return response.json({ token: user });
     } catch (error: any) {
-      return response.status(400).json({ message: error.message });
+      return response.status(401).json({ message: error.message });
     }
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import { getCustomRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -15,7 +16,8 @@ class LoginUserService {
     const userRepository = getCustomRepository(UserRepository);
 
     const doesUserExist = await userRepository.findOne({ email });
-    if (!doesUserExist) {
+    // console.log(doesUserExist);
+    if (doesUserExist === undefined) {
       throw new Error("No user found!");
     }
 
@@ -31,10 +33,6 @@ class LoginUserService {
     const token: string = jwt.sign({ email }, config.secret as string, {
       expiresIn: config.expiresIn,
     });
-
-    // const userToken = userRepository.create({ token });
-
-    // await userRepository.save(userToken);
 
     return token;
   }
