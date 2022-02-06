@@ -8,7 +8,6 @@ class LoginUserController {
 
       const loginUserService = new LoginUserService();
       const user = await loginUserService.execute({ email, password });
-      console.log(user);
 
       return response.json({ token: user });
     } catch (error: any) {
