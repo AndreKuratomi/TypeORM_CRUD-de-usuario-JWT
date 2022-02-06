@@ -8,7 +8,7 @@ export const isTokenValid = (
   next: NextFunction
 ) => {
   const auth = request.headers.authorization;
-  console.log(auth);
+
   if (auth === undefined) {
     // POR QUE AQUI NO MIDDLEWARE THROW NÂO FUNCIONA??
     // throw new Error("Headers unabled!");
@@ -16,7 +16,6 @@ export const isTokenValid = (
   }
 
   const token = auth.split(" ")[1];
-  console.log(token);
 
   if (token === undefined) {
     // throw new Error("No token used!");
