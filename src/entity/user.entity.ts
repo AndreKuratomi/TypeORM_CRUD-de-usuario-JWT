@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 // import { v4 as uuid } from "uuid";
 
@@ -28,7 +29,7 @@ export default class User {
   @CreateDateColumn()
   createdOn!: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedOn!: Date;
 
   constructor(
