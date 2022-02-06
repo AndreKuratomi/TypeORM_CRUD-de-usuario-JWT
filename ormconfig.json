@@ -1,10 +1,6 @@
 {
   "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "test",
-  "password": "test",
-  "database": "test",
+  "url": "postgresql://postgres:1234@localhost:5432/typeorm_test",
   "synchronize": true,
   "logging": false,
   "entities": ["src/entity/**/*.ts"],

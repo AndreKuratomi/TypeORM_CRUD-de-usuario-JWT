@@ -1,5 +1,3 @@
-/* eslint-disable quotes */
-/* eslint-disable import/prefer-default-export */
 import dotenv from "dotenv";
 
 dotenv.config();
