@@ -1,14 +1,32 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable quotes */
 import { Request, Response } from "express";
-import DeleteUserService from "../services/deleteUser.service";
+import { getCustomRepository } from "typeorm";
+
+import UserRepository from "../repository/user.repository";
 
 class DeleteUserController {
-  async handle(request: Request, response: Response) {
+  async handle(request: any, response: Response) {
     const { id } = request.params;
 
-    const deleteUserService = new DeleteUserService();
+    const userRepository = getCustomRepository(UserRepository);
 
-    const deletedUser = await deleteUserService.execute(id);
+    const userProfile = request.userProfile;
+    console.log(userProfile);
+    if (
+      (userProfile.isAdmin === true && userProfile.id === id) ||
+      (userProfile.isAdmin === true && userProfile.id !== id)
+    ) {
+      await userRepository.delete(id);
+      // console.log(userRepository);
+    }
+    if (userProfile.isAdmin === false && userProfile.id === id) {
+      await userRepository.delete(id);
+      // console.log(userRepository);
+    } else if (userProfile.isAdmin === false && userProfile.id !== id) {
+      throw new Error("Non admins must delete only its own profile!");
+      // return "Non admins must delete only its own profile!";
+    }
 
     return response.json({ message: "User deleted with success" });
   }
