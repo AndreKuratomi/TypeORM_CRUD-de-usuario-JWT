@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable object-curly-newline */
 import { Request, Response } from "express";
+
 import UserRegisterService from "../services/registerUser.service";
 
 class RegisterUserController {
@@ -11,12 +12,17 @@ class RegisterUserController {
 
       const userRegisterService = new UserRegisterService();
 
-      const user = await userRegisterService.execute({
+      const user: User = await userRegisterService.execute({
         name,
         email,
         password,
         isAdmin,
       });
+
+      // const publicUser = user;
+      // "The operand of a 'delete' operator must be optional"
+      // delete publicUser.password;
+      // console.log(publicUser);
 
       return response.json(user);
     } catch (error: any) {
