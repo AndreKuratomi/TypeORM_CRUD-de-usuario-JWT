@@ -1,13 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable quotes */
 
-interface IProps {
-  id: string;
-  data: {};
-}
-
 class UpdateUserService {
-  async execute({ id, data }: IProps) {}
+  async execute() {}
 }
 
 export default UpdateUserService;

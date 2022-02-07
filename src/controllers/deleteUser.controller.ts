@@ -18,14 +18,11 @@ class DeleteUserController {
       (userProfile.isAdmin === true && userProfile.id !== id)
     ) {
       await userRepository.delete(id);
-      // console.log(userRepository);
     }
     if (userProfile.isAdmin === false && userProfile.id === id) {
       await userRepository.delete(id);
-      // console.log(userRepository);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
       throw new Error("Non admins must delete only its own profile!");
-      // return "Non admins must delete only its own profile!";
     }
 
     return response.json({ message: "User deleted with success" });

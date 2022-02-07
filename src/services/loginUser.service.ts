@@ -16,7 +16,7 @@ class LoginUserService {
     const userRepository = getCustomRepository(UserRepository);
 
     const doesUserExist = await userRepository.findOne({ email });
-    // console.log(doesUserExist);
+
     if (doesUserExist === undefined) {
       throw new Error("No user found!");
     }
