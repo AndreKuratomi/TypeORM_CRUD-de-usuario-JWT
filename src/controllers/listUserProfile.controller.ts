@@ -6,7 +6,7 @@ class ListUserProfileController {
     const listUserProfileService = new ListUserProfile();
 
     const userData = await listUserProfileService.execute(request, response);
-    console.log(userData);
+
     return response.json(userData);
   }
 }
