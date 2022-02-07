@@ -13,9 +13,9 @@ export const isTokenValid = (
 ) => {
   const token = request.headers.authorization;
 
-  tokenFirstApproach(token);
+  const tokenItself = tokenFirstApproach(token);
 
-  jwt.verify(token as string, config.secret as string, (err: any) => {
+  jwt.verify(tokenItself, config.secret as string, (err: any) => {
     if (err) {
       throw new Error("Invalid token!");
     }

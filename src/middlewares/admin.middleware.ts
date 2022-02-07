@@ -15,13 +15,13 @@ export const isUserAdmin = async (
 ) => {
   const token = request.headers.authorization;
 
-  tokenFirstApproach(token);
+  const tokenItself = tokenFirstApproach(token);
 
   const usersRepository = getCustomRepository(UserRepository);
 
   const isValidAdmin = await usersRepository.find({ isAdmin: true });
 
-  jwt.verify(token as string, config.secret as string, (err, decoded: any) => {
+  jwt.verify(tokenItself, config.secret as string, (err, decoded: any) => {
     for (let i = 0; i < isValidAdmin.length; i++) {
       if (isValidAdmin[i].id === decoded["id"]) {
         return "";

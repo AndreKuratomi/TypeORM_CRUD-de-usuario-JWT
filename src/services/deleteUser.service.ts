@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 
 import UserRepository from "../repository/user.repository";
@@ -9,8 +8,6 @@ import { foundScope, tokenFirstApproach } from "./token.service";
 class DeleteUserService {
   async execute(id: string) {
     const userRepository = getCustomRepository(UserRepository);
-
-    const token = tokenFirstApproach(request, response);
 
     // const foundEmail: any = foundScope(token as string);
     // console.log(foundEmail);
