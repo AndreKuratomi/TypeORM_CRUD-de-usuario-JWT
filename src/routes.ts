@@ -6,10 +6,10 @@ import RegisterUserController from "./controllers/registerUser.controller";
 import LoginUserController from "./controllers/loginUser.controller";
 import ListUsersController from "./controllers/listUsers.controller";
 import ListUserProfileController from "./controllers/listUserProfile.controller";
-// import UpdateUserController from "./controllers/updateUser.controller";
+import UpdateUserController from "./controllers/updateUser.controller";
 // import DeleteUserController from "./controllers/deleteUser.controller";
 
-import { isTokenValid } from "./middlewares/token.middleware";
+import { isTokenValid } from "./middlewares/tokenVerify.middleware";
 import { isUserAdmin } from "./middlewares/admin.middleware";
 import { extractTokenId } from "./middlewares/tokenId.middleware";
 
@@ -19,7 +19,7 @@ const registerUserController = new RegisterUserController();
 const loginUserController = new LoginUserController();
 const listUsersController = new ListUsersController();
 const listUserProfileController = new ListUserProfileController();
-// const updateUserController = new UpdateUserController();
+const updateUserController = new UpdateUserController();
 // const deleteUserController = new DeleteUserController();
 
 router.post("/users", registerUserController.handle);
@@ -31,7 +31,12 @@ router.get(
   extractTokenId,
   listUserProfileController.handle
 );
-// router.patch("/users/:id", isTokenValid, updateUserController.handle);
+router.patch(
+  "/users/:id",
+  isTokenValid,
+  extractTokenId,
+  updateUserController.handle
+);
 // router.delete("/users/:id", isTokenValid, deleteUserController.handle);
 
 export default router;

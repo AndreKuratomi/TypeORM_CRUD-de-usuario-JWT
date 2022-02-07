@@ -1,10 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable quotes */
-import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 
 import UserRepository from "../repository/user.repository";
-import { foundScope, tokenFirstApproach } from "./token.service";
 
 interface IProps {
   id: string;
@@ -12,31 +10,17 @@ interface IProps {
 }
 
 class UpdateUserService {
-  // SE NO EXECUTE NÃO CABE COLOCAR REQ E RES COMO FAZER ALÉM DE REESCREVER O SERVICE DO TOKEN?
   async execute({ id, data }: IProps) {
     const userRepository = getCustomRepository(UserRepository);
 
     for (const elem in data) {
       if (elem === "isAdmin") {
-        return "'isAdmin' field cannot be updated!";
-        // throw new Error("'isAdmin' field cannot be updated!");
-        // return response
-        //   .status(401)
-        //   .json({ message: "'isAdmin' field cannot be updated!" });
+        throw new Error("'isAdmin' field cannot be updated!");
       }
     }
 
-    // const foundEmail: any = foundScope(token as string);
-    // console.log(foundEmail);
+    const { userProfile } = request.userProfile;
 
-    const userProfile = await userRepository.findOne({
-      email: "daniel3@kenzie.com",
-    });
-    if (!userProfile) {
-      throw new Error("No user found!");
-    }
-
-    console.log(userProfile.isAdmin);
     // COMO DEIXAR CLARO QUE QUEM É ADMIN PODE TUDO E QUEM NÃO PODE SÓ NO PRÓPRIO???
     if (
       (userProfile.isAdmin === true && userProfile.id === id) ||
@@ -49,13 +33,12 @@ class UpdateUserService {
       await userRepository.update(id, data);
       // console.log(userRepository);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      return "Non admins must update only its own profile!";
-      // throw new Error("'isAdmin' field cannot be updated!");
+      throw new Error("'isAdmin' field cannot be updated!");
     }
 
-    const user = userRepository.findOne({ id });
+    const user = await userRepository.findOne({ id });
 
-    userProfile.updatedOn = new Date();
+    user.updatedOn = new Date();
 
     return user;
   }
