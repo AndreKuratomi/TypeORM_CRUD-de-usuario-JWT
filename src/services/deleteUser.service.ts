@@ -7,7 +7,7 @@ import config from "../config/jwt.config";
 import { foundScope, tokenFirstApproach } from "./token.service";
 
 class DeleteUserService {
-  async execute(id: string, request: Request, response: Response) {
+  async execute(id: string) {
     const userRepository = getCustomRepository(UserRepository);
 
     const token = tokenFirstApproach(request, response);

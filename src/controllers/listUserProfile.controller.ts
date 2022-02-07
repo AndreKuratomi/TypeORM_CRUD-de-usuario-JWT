@@ -5,7 +5,7 @@ class ListUserProfileController {
   async handle(request: Request, response: Response) {
     const listUserProfileService = new ListUserProfile();
 
-    const userData = await listUserProfileService.execute(request, response);
+    const userData = await listUserProfileService.execute();
 
     return response.json(userData);
   }

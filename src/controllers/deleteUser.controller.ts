@@ -8,7 +8,7 @@ class DeleteUserController {
 
     const deleteUserService = new DeleteUserService();
 
-    const deletedUser = await deleteUserService.execute(id, request, response);
+    const deletedUser = await deleteUserService.execute(id);
 
     return response.json({ message: "User deleted with success" });
   }
