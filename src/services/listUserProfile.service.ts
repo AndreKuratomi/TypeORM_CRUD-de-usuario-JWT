@@ -5,11 +5,11 @@ import UserRepository from "../repository/user.repository";
 import config from "../config/jwt.config";
 
 class ListUserProfile {
-  // usar o middleware isTokenValid
+
   async execute() {
     const userRepository = getCustomRepository(UserRepository);
 
-    jwt.verify(token, config.secret, (err, decoded)) {
+    jwt.verify(token, config.secret as string, (err, decoded)) {
         if (err) {
             throw new Error("Invalid token!")
         }

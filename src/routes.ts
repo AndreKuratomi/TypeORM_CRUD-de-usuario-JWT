@@ -25,7 +25,7 @@ router.post("/users", registerUserController.handle);
 router.post("/login", loginUserController.handle);
 router.get("/users", isTokenValid, isUserAdmin, listUsersController.handle);
 // router.get("/users/profile", isTokenValid, listUserProfileController.handle);
-// router.patch("/users/:uuid", isTokenValid, updateUserController.handle);
+// router.patch("/users/:uuid", isTokenValid, isUserAdmin, updateUserController.handle);
 // router.delete("/users/:uuid", isTokenValid, deleteUserController.handle);
 
 export default router;
