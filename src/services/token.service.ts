@@ -19,7 +19,7 @@ export const tokenFirstApproach = (request: Request, response: Response) => {
   return token;
 };
 
-// FEITO APENAS PARA FUGIR DO PROBLEMA DO ESCOPO!
+// FEITO APENAS PARA (TENTAR) FUGIR DO PROBLEMA DO ESCOPO!
 export const foundScope = (token: string) => {
   jwt.verify(token as string, config.secret as string, (err, decoded: any) => {
     const email: string = decoded["email"];

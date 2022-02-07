@@ -30,7 +30,9 @@ class LoginUserService {
       throw new Error("Given password mismatch!");
     }
 
-    const token: string = jwt.sign({ email }, config.secret as string, {
+    const id = doesUserExist.id;
+
+    const token: string = jwt.sign({ id }, config.secret as string, {
       expiresIn: config.expiresIn,
     });
 
