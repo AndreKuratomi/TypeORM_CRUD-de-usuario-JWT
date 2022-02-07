@@ -13,11 +13,13 @@ export const isUserAdmin = async (
   response: Response,
   next: NextFunction
 ) => {
+  const token = request.headers.authorization;
+
+  tokenFirstApproach(token);
+
   const usersRepository = getCustomRepository(UserRepository);
 
   const isValidAdmin = await usersRepository.find({ isAdmin: true });
-
-  const token = tokenFirstApproach(request, response);
 
   jwt.verify(token as string, config.secret as string, (err, decoded: any) => {
     for (let i = 0; i < isValidAdmin.length; i++) {
@@ -26,10 +28,7 @@ export const isUserAdmin = async (
       }
     }
 
-    // throw new Error("This user is not an administrator!");
-    return response
-      .status(401)
-      .json({ message: "This user is not an administrator!" });
+    throw new Error("This user is not an administrator!");
   });
 
   return next();

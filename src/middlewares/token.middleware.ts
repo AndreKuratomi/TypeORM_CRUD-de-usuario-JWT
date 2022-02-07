@@ -11,12 +11,13 @@ export const isTokenValid = (
   response: Response,
   next: NextFunction
 ) => {
-  const token = tokenFirstApproach(request, response);
+  const token = request.headers.authorization;
+
+  tokenFirstApproach(token);
 
   jwt.verify(token as string, config.secret as string, (err: any) => {
     if (err) {
-      // throw new Error("Invalid token!");
-      return response.status(401).json({ message: "Invalid token!" });
+      throw new Error("Invalid token!");
     }
   });
 
