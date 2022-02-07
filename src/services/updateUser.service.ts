@@ -60,7 +60,6 @@ class UpdateUserService {
     userProfile.updatedOn = new Date();
 
     return user;
-    // return userProfile;
   }
 }
 

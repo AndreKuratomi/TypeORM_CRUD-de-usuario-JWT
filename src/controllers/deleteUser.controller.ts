@@ -1,5 +1,6 @@
+/* eslint-disable quotes */
 import { Request, Response } from "express";
-import DeleteUserService from "../services/DeleteUser.service";
+import DeleteUserService from "../services/deleteUser.service";
 
 class DeleteUserController {
   async handle(request: Request, response: Response) {
@@ -7,9 +8,9 @@ class DeleteUserController {
 
     const deleteUserService = new DeleteUserService();
 
-    const deletedUser = await deleteUserService.execute(id);
+    const deletedUser = await deleteUserService.execute(id, request, response);
 
-    return response.json(deletedUser);
+    return response.json({ message: "User deleted with success" });
   }
 }
 
