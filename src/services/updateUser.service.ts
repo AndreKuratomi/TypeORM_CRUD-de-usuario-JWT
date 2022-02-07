@@ -13,7 +13,7 @@ interface IProps {
 
 class UpdateUserService {
   // SE NO EXECUTE NÃO CABE COLOCAR REQ E RES COMO FAZER ALÉM DE REESCREVER O SERVICE DO TOKEN?
-  async execute({ id, data }: IProps, request: Request, response: Response) {
+  async execute({ id, data }: IProps) {
     const userRepository = getCustomRepository(UserRepository);
 
     for (const elem in data) {
@@ -25,8 +25,6 @@ class UpdateUserService {
         //   .json({ message: "'isAdmin' field cannot be updated!" });
       }
     }
-
-    const token = tokenFirstApproach(request, response);
 
     // const foundEmail: any = foundScope(token as string);
     // console.log(foundEmail);
