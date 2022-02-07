@@ -1,25 +1,24 @@
-import { Request, Response } from "express";
-import { getCustomRepository } from "typeorm";
+/* eslint-disable quotes */
+/* eslint-disable import/prefer-default-export */
+import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
-// import isUserAdmin from "./admin.middleware";
-import UserRepository from "../repository/user.repository";
+import config from "../config/jwt.config";
+import { tokenFirstApproach } from "../services/token.service";
 
-export const isTokenValid = (req: Request, res: Response, next: any) => {
-  //   colocar num service?
-  const userRepository = getCustomRepository(UserRepository);
+export const isTokenValid = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  const token = tokenFirstApproach(request, response);
 
-  if (req.headers.authorization === undefined) {
-    throw new Error("Headers unabled!");
-  }
-
-  const token = req.headers.authorization.split(" ")[1];
-
-  if (token === undefined) {
-    throw new Error("No token used!");
-  }
-
-  //   return token;
-  //
+  jwt.verify(token as string, config.secret as string, (err: any) => {
+    if (err) {
+      // throw new Error("Invalid token!");
+      return response.status(401).json({ message: "Invalid token!" });
+    }
+  });
 
   return next();
 };
