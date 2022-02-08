@@ -30,7 +30,9 @@ export const isUserAdmin = async (
     }
 
     // throw new ErrorHandler("This user is not an administrator!", 401);
-    throw new Error("This user is not an administrator!");
+    response
+      .status(401)
+      .json({ message: "This user is not an administrator!" });
   });
 
   return next();

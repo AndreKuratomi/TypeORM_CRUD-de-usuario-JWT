@@ -13,7 +13,7 @@ class DeleteUserController {
     const userRepository = getCustomRepository(UserRepository);
 
     const userProfile = request.userProfile;
-    console.log(userProfile);
+
     if (
       (userProfile.isAdmin === true && userProfile.id === id) ||
       (userProfile.isAdmin === true && userProfile.id !== id)
@@ -23,10 +23,13 @@ class DeleteUserController {
     if (userProfile.isAdmin === false && userProfile.id === id) {
       await userRepository.delete(id);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      throw new ErrorHandler(
-        "Non admins must delete only its own profile!",
-        401
-      );
+      // throw new ErrorHandler(
+      //   "Non admins must delete only its own profiles!",
+      //   401
+      // );
+      return response
+        .status(401)
+        .json({ message: "Non admins must delete only its own profiles!" });
     }
 
     return response.json({ message: "User deleted with success" });

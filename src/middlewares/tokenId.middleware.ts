@@ -31,7 +31,7 @@ export const extractTokenId = (
       const userProfile = await userRepository.findOne({ id: tokenId });
       if (!userProfile) {
         // throw new ErrorHandler("No user found!", 404);
-        throw new Error("No user found!");
+        response.status(404).json({ message: "No user found!" });
       }
 
       request.userProfile = userProfile;

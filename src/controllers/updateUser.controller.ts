@@ -14,9 +14,11 @@ class UpdateUserController {
     const userRepository = getCustomRepository(UserRepository);
 
     for (const elem in data) {
-      console.log(elem);
       if (elem === "isAdmin") {
-        throw new ErrorHandler("'isAdmin' field cannot be updated!", 401);
+        // throw new ErrorHandler("'isAdmin' field cannot be updated!", 401);
+        return response
+          .status(401)
+          .json({ message: "'isAdmin' field cannot be updated!" });
       }
     }
 
@@ -32,7 +34,10 @@ class UpdateUserController {
     if (userProfile.isAdmin === false && userProfile.id === id) {
       await userRepository.update(id, data);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      throw new ErrorHandler("Only admins may update non self-profiles!", 401);
+      // throw new ErrorHandler("Only admins may update non self-profiles!", 401);
+      return response
+        .status(401)
+        .json({ message: "Non admins must update only its own profiles!" });
     }
 
     userProfile.updatedOn = new Date();
