@@ -15,13 +15,15 @@ export const isTokenValid = (
   const token = request.headers.authorization;
 
   const tokenItself = tokenFirstApproach(token);
+  try {
+    jwt.verify(tokenItself, config.secret as string, (err: any) => {
+      if (err) {
+        throw new ErrorHandler("Invalid token!", 401);
+      }
+    });
 
-  jwt.verify(tokenItself, config.secret as string, (err: any) => {
-    if (err) {
-      // throw new ErrorHandler("Invalid token!", 401);
-      throw new Error("Invalid token!");
-    }
-  });
-
-  return next();
+    return next();
+  } catch (error: any) {
+    response.status(error.statusCode).json({ message: error.message });
+  }
 };

@@ -10,7 +10,7 @@ class ListUsersController {
 
       return response.json(users);
     } catch (error: any) {
-      return response.status(401).json({ message: error.message });
+      return response.status(error.statusCode).json({ message: error.message });
     }
   }
 }

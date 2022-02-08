@@ -21,17 +21,19 @@ export const isUserAdmin = async (
   const usersRepository = getCustomRepository(UserRepository);
 
   const isValidAdmin = await usersRepository.find({ isAdmin: true });
-
-  jwt.verify(tokenItself, config.secret as string, (err, decoded: any) => {
-    for (let i = 0; i < isValidAdmin.length; i++) {
-      if (isValidAdmin[i].id === decoded["id"]) {
-        return "";
+  try {
+    jwt.verify(tokenItself, config.secret as string, (err, decoded: any) => {
+      for (let i = 0; i < isValidAdmin.length; i++) {
+        if (isValidAdmin[i].id === decoded.id) {
+          return "";
+        }
       }
-    }
 
-    // throw new ErrorHandler("This user is not an administrator!", 401);
-    throw new Error("This user is not an administrator!");
-  });
+      throw new ErrorHandler("This user is not an administrator!", 401);
+    });
 
-  return next();
+    return next();
+  } catch (error: any) {
+    response.status(error.statusCode).json({ message: error.message });
+  }
 };

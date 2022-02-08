@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 /* eslint-disable import/prefer-default-export */
 import { NextFunction, Response } from "express";
@@ -22,21 +23,23 @@ export const extractTokenId = (
 
   const tokenItself = tokenFirstApproach(token);
   const userRepository = getCustomRepository(UserRepository);
+  try {
+    jwt.verify(
+      tokenItself,
+      config.secret as string,
+      async (err, decoded: any) => {
+        const tokenId = decoded.id;
+        const userProfile = await userRepository.findOne({ id: tokenId });
+        if (!userProfile) {
+          throw new ErrorHandler("No user found!", 404);
+        }
 
-  jwt.verify(
-    tokenItself,
-    config.secret as string,
-    async (err, decoded: any) => {
-      const tokenId = decoded.id;
-      const userProfile = await userRepository.findOne({ id: tokenId });
-      if (!userProfile) {
-        // throw new ErrorHandler("No user found!", 404);
-        throw new Error("No user found!");
+        request.userProfile = userProfile;
+
+        return next();
       }
-
-      request.userProfile = userProfile;
-
-      return next();
-    }
-  );
+    );
+  } catch (error: any) {
+    response.status(error.statusCode).json({ message: error.message });
+  }
 };
