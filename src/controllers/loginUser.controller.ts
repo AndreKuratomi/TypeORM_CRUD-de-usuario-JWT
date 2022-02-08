@@ -11,7 +11,7 @@ class LoginUserController {
 
       return response.json({ token: user });
     } catch (error: any) {
-      return response.status(401).json({ message: error.message });
+      return response.status(error.statusCode).json({ message: error.message });
     }
   }
 }

@@ -8,31 +8,32 @@ import ErrorHandler from "../utils/errors";
 
 class DeleteUserController {
   async handle(request: any, response: Response) {
-    const { id } = request.params;
+    try {
+      const { id } = request.params;
 
-    const userRepository = getCustomRepository(UserRepository);
+      const userRepository = getCustomRepository(UserRepository);
 
-    const userProfile = request.userProfile;
+      const userProfile = request.userProfile;
 
-    if (
-      (userProfile.isAdmin === true && userProfile.id === id) ||
-      (userProfile.isAdmin === true && userProfile.id !== id)
-    ) {
-      await userRepository.delete(id);
+      if (
+        (userProfile.isAdmin === true && userProfile.id === id) ||
+        (userProfile.isAdmin === true && userProfile.id !== id)
+      ) {
+        await userRepository.delete(id);
+      }
+      if (userProfile.isAdmin === false && userProfile.id === id) {
+        await userRepository.delete(id);
+      } else if (userProfile.isAdmin === false && userProfile.id !== id) {
+        throw new ErrorHandler(
+          "Non admins must delete only its own profiles!",
+          401
+        );
+      }
+
+      return response.json({ message: "User deleted with success" });
+    } catch (error: any) {
+      return response.status(error.statusCode).json({ message: error.message });
     }
-    if (userProfile.isAdmin === false && userProfile.id === id) {
-      await userRepository.delete(id);
-    } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      // throw new ErrorHandler(
-      //   "Non admins must delete only its own profiles!",
-      //   401
-      // );
-      return response
-        .status(401)
-        .json({ message: "Non admins must delete only its own profiles!" });
-    }
-
-    return response.json({ message: "User deleted with success" });
   }
 }
 
