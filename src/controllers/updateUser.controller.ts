@@ -1,20 +1,45 @@
+/* eslint-disable quotes */
+/* eslint-disable prefer-destructuring */
 import { Request, Response } from "express";
-import UpdateUserService from "../services/updateUser.service";
+import { getCustomRepository } from "typeorm";
+
+import UserRepository from "../repository/user.repository";
+import ErrorHandler from "../utils/errors";
 
 class UpdateUserController {
-  async handle(request: Request, response: Response) {
+  async handle(request: any, response: Response) {
     const { id } = request.params;
     const data = request.body;
 
-    const updateUserService = new UpdateUserService();
+    const userRepository = getCustomRepository(UserRepository);
 
-    const updatedUser = await updateUserService.execute(
-      { id, data },
-      request,
-      response
-    );
+    for (const elem in data) {
+      console.log(elem);
+      if (elem === "isAdmin") {
+        throw new ErrorHandler("'isAdmin' field cannot be updated!", 401);
+      }
+    }
 
-    return response.json(updatedUser);
+    const userProfile = request.userProfile;
+
+    if (
+      (userProfile.isAdmin === true && userProfile.id === id) ||
+      (userProfile.isAdmin === true && userProfile.id !== id)
+    ) {
+      await userRepository.update(id, data);
+    }
+
+    if (userProfile.isAdmin === false && userProfile.id === id) {
+      await userRepository.update(id, data);
+    } else if (userProfile.isAdmin === false && userProfile.id !== id) {
+      throw new ErrorHandler("Only admins may update non self-profiles!", 401);
+    }
+
+    userProfile.updatedOn = new Date();
+
+    const user = await userRepository.findOne({ id });
+
+    return response.json(user);
   }
 }
 

@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable object-curly-newline */
 import { Request, Response } from "express";
+
 import UserRegisterService from "../services/registerUser.service";
 
 class RegisterUserController {
@@ -17,6 +18,11 @@ class RegisterUserController {
         password,
         isAdmin,
       });
+
+      // const publicUser = user;
+      // "The operand of a 'delete' operator must be optional"
+      // delete publicUser.password;
+      // console.log(publicUser);
 
       return response.json(user);
     } catch (error: any) {
