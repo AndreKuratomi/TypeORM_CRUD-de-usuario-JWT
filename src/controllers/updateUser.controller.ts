@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 
 import UserRepository from "../repository/user.repository";
+import ErrorHandler from "../utils/errors";
 
 class UpdateUserController {
   async handle(request: any, response: Response) {
@@ -15,7 +16,7 @@ class UpdateUserController {
     for (const elem in data) {
       console.log(elem);
       if (elem === "isAdmin") {
-        throw new Error("'isAdmin' field cannot be updated!");
+        throw new ErrorHandler("'isAdmin' field cannot be updated!", 401);
       }
     }
 
@@ -31,7 +32,7 @@ class UpdateUserController {
     if (userProfile.isAdmin === false && userProfile.id === id) {
       await userRepository.update(id, data);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      throw new Error("Only admins may update non self-profiles!");
+      throw new ErrorHandler("Only admins may update non self-profiles!", 401);
     }
 
     userProfile.updatedOn = new Date();

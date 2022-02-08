@@ -2,10 +2,11 @@
 /* eslint-disable quotes */
 /* eslint-disable import/prefer-default-export */
 
+import ErrorHandler from "../utils/errors";
+
 export const tokenFirstApproach = (auth: string | undefined) => {
   if (auth === undefined) {
-    throw new Error("Headers unabled!");
-    // return response.status(401).json({ message: "Headers unabled!" });
+    throw new ErrorHandler("Headers unabled!", 401);
   }
 
   const token = auth.split(" ")[1];

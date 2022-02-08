@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 
 import config from "../config/jwt.config";
 import { tokenFirstApproach } from "../services/token.service";
+import ErrorHandler from "../utils/errors";
 
 export const isTokenValid = (
   request: Request,
@@ -17,6 +18,7 @@ export const isTokenValid = (
 
   jwt.verify(tokenItself, config.secret as string, (err: any) => {
     if (err) {
+      // throw new ErrorHandler("Invalid token!", 401);
       throw new Error("Invalid token!");
     }
   });

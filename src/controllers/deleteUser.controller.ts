@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 
 import UserRepository from "../repository/user.repository";
+import ErrorHandler from "../utils/errors";
 
 class DeleteUserController {
   async handle(request: any, response: Response) {
@@ -22,7 +23,10 @@ class DeleteUserController {
     if (userProfile.isAdmin === false && userProfile.id === id) {
       await userRepository.delete(id);
     } else if (userProfile.isAdmin === false && userProfile.id !== id) {
-      throw new Error("Non admins must delete only its own profile!");
+      throw new ErrorHandler(
+        "Non admins must delete only its own profile!",
+        401
+      );
     }
 
     return response.json({ message: "User deleted with success" });

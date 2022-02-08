@@ -12,7 +12,7 @@ class RegisterUserController {
 
       const userRegisterService = new UserRegisterService();
 
-      const user: User = await userRegisterService.execute({
+      const user = await userRegisterService.execute({
         name,
         email,
         password,
