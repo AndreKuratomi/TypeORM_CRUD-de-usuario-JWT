@@ -19,7 +19,7 @@ export const isTokenValid = (
   jwt.verify(tokenItself, config.secret as string, (err: any) => {
     if (err) {
       // throw new ErrorHandler("Invalid token!", 401);
-      throw new Error("Invalid token!");
+      response.status(401).json({ message: "Invalid token!" });
     }
   });
 
