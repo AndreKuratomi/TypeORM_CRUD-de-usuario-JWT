@@ -26,7 +26,7 @@ class RegisterUserController {
 
       return response.json(user);
     } catch (error: any) {
-      return response.status(403).json({ message: error.message });
+      return response.status(error.statusCode).json({ message: error.message });
     }
   }
 }

@@ -12,12 +12,10 @@ export const handleError = (
 ) => {
   if (error instanceof ErrorHandler) {
     return response.status(error.statusCode).json({
-      status: error.statusCode,
       message: error.message,
     });
   }
   return response.status(500).json({
-    status: "error",
     message: "Internal server error",
   });
 };
