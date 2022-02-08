@@ -1,14 +1,12 @@
-/* eslint-disable indent */
-/* eslint-disable quotes */
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("users")
+@Entity()
 export default class User {
   @PrimaryGeneratedColumn("uuid")
   readonly id!: string;
