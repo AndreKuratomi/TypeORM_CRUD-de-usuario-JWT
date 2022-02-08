@@ -1,9 +1,11 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable quotes */
 import { getCustomRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 
 import User from "../entity";
 import UserRepository from "../repository/user.repository";
+import ErrorHandler from "../utils/errors";
 
 interface IUserRequest {
   name: string;
@@ -19,7 +21,7 @@ class UserRegisterService {
     const emailAlreadyExists = await userRepository.findOne({ email });
 
     if (emailAlreadyExists) {
-      throw new Error("Email already registered!");
+      throw new ErrorHandler("Email already registered!", 403);
     }
 
     const hashing = await bcrypt.hash(password as string, 10);

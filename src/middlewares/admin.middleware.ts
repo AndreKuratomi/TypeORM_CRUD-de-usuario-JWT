@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import config from "../config/jwt.config";
 import UserRepository from "../repository/user.repository";
 import { tokenFirstApproach } from "../services/token.service";
+import ErrorHandler from "../utils/errors";
 
 export const isUserAdmin = async (
   request: Request,
@@ -28,6 +29,7 @@ export const isUserAdmin = async (
       }
     }
 
+    // throw new ErrorHandler("This user is not an administrator!", 401);
     throw new Error("This user is not an administrator!");
   });
 

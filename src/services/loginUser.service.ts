@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 
 import UserRepository from "../repository/user.repository";
 import config from "../config/jwt.config";
+import ErrorHandler from "../utils/errors";
 
 interface IUserLogin {
   email: string;
@@ -18,7 +19,7 @@ class LoginUserService {
     const doesUserExist = await userRepository.findOne({ email });
 
     if (doesUserExist === undefined) {
-      throw new Error("No user found!");
+      throw new ErrorHandler("No user found!", 401);
     }
 
     const doesPasswordMatch = await bcrypt.compare(
@@ -27,7 +28,7 @@ class LoginUserService {
     );
 
     if (!doesPasswordMatch) {
-      throw new Error("Given password mismatch!");
+      throw new ErrorHandler("Given password mismatch!", 401);
     }
 
     const id = doesUserExist.id;
