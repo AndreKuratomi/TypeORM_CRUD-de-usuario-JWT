@@ -1,3 +1,10 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable import/extensions */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable quotes */
 /* eslint-disable prefer-destructuring */
 import { Request, Response } from "express";
