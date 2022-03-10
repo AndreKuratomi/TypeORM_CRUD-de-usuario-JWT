@@ -9,6 +9,7 @@
 /* eslint-disable prefer-destructuring */
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
+import User from "../entity/User";
 
 import UserRepository from "../repository/user.repository";
 import ErrorHandler from "../utils/errors";
@@ -49,7 +50,9 @@ class UpdateUserController {
 
       const user = await userRepository.findOne({ id });
 
-      return response.json(user);
+      const { password: passawordData, ...dataWithoutPassword } = user as User;
+
+      return response.json(dataWithoutPassword);
     } catch (error: any) {
       return response.status(error.statusCode).json({ message: error.message });
     }

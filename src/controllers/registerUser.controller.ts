@@ -13,7 +13,6 @@ class RegisterUserController {
       const { email, name, password, isAdmin } = request.body;
 
       const userRegisterService = new UserRegisterService();
-      // console.log(userRegisterService);
 
       const user = await userRegisterService.execute({
         name,
@@ -21,16 +20,11 @@ class RegisterUserController {
         password,
         isAdmin,
       });
-      console.log(user);
 
-      // const publicUser = user;
-      // "The operand of a 'delete' operator must be optional"
-      // delete publicUser.password;
-      // console.log(publicUser);
+      const { password: passawordData, ...dataWithoutPassword } = user;
 
-      return response.json(user);
+      return response.json(dataWithoutPassword);
     } catch (error: any) {
-      console.log("qwer");
       return response.status(400).json({ message: error.message });
     }
   }

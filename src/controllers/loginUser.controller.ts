@@ -1,3 +1,6 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable quotes */
 import { Request, Response } from "express";
 import LoginUserService from "../services/loginUser.service";
 
