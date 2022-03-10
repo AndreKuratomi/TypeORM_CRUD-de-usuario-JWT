@@ -5,7 +5,9 @@ class ListUserProfileController {
     try {
       const userData = request.userProfile;
 
-      return response.json(userData);
+      const { password: passawordData, ...dataWithoutPassword } = userData;
+
+      return response.json(dataWithoutPassword);
     } catch (error: any) {
       return response.status(error.statusCode).json({ message: error.message });
     }

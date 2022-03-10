@@ -20,13 +20,10 @@ interface IUserRequest {
 }
 
 class UserRegisterService {
-  // eslint-disable-next-line object-curly-newline
   async execute({ name, email, password, isAdmin }: IUserRequest) {
     const userRepository = getCustomRepository(UserRepository);
-    // console.log(userRepository);
 
     const emailAlreadyExists = await userRepository.findOne({ email });
-    console.log(emailAlreadyExists);
 
     if (emailAlreadyExists) {
       throw new ErrorHandler("Email already registered!", 403);
@@ -38,7 +35,6 @@ class UserRegisterService {
     const user = userRepository.create(
       new User(name, email, password, isAdmin)
     );
-    console.log(user);
 
     await userRepository.save(user);
 
