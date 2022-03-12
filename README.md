@@ -264,6 +264,14 @@ Caso o usuário do token seja o mesmo do id ou for administrador a resposta ser�
   "updatedOn": "2022-03-12T10:37:49.443Z"
 }
 ``` 
+
+O único campo que não pode ser alterado é o "isAdmin". Pois se o usuário tentar atualizar a resposta será:
+
+```
+{
+  "message": "'isAdmin' field cannot be updated!"
+}
+```
   
 Caso contrário a resposta será:
 
@@ -286,10 +294,7 @@ Deleção de usuário cadastrado (Método DELETE): <b>/users/uuid**</b> (ou loca
 Exemplo a ser colocado no body da requisição:
 
 ```
-{
-    "name": "André Reinaldo",
-    "email": "dagomail@kenzie.com.br"
-}
+(Requsição feita sem body)
 ```
   
 Caso o usuário do token seja o mesmo do id ou for administrador a responsta será:
