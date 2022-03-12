@@ -7,7 +7,6 @@ interface IProps {
 }
 
 class UpdateUserService {
-  //   usar middleware isTokenValid
   async execute({ id, data }: IProps) {
     const userRepository = getCustomRepository(UserRepository);
 
@@ -17,7 +16,6 @@ class UpdateUserService {
       }
     }
 
-    // pegar o token, abrí-lo e ver se pelo id ele é administrador. else, comparar o id do token com o id dado
     jwt.verify(token, config.secret, (err, decoded)) {
         if (err) {
             throw new Error("Invalid token!")
@@ -27,10 +25,7 @@ class UpdateUserService {
         if (!userProfile) {
             throw new Error("No user found!")
         }
-
-        // return userProfile;
     }
-    // isto acima deve ser um service 
 
     if (userProfile.isAdmin === true) {
         await userRepository.update(id, data);
