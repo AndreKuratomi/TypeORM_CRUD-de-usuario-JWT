@@ -265,7 +265,7 @@ Caso o usuário do token seja o mesmo do id ou for administrador a resposta ser�
 }
 ``` 
 
-O único campo que não pode ser alterado é o "isAdmin". Pois se o usuário tentar atualizar a resposta será:
+O único campo que não pode ser alterado é o "isAdmin". Pois se o usuário tentar atualizá-lo a resposta será:
 
 ```
 {
@@ -297,7 +297,7 @@ Exemplo a ser colocado no body da requisição:
 (Requsição feita sem body)
 ```
   
-Caso o usuário do token seja o mesmo do id ou for administrador a responsta será:
+Caso o usuário do token seja o mesmo do id ou for administrador a resposta será:
 
 ```
 Status: 200 OK
