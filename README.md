@@ -1,4 +1,4 @@
-##TypeORM_CRUD-de-usuario-JWT
+## TypeORM_CRUD-de-usuario-JWT
 
 - [Descrição](#descrição)
 - [Instalação](#instalação)
@@ -290,15 +290,14 @@ Exemplo a ser colocado no body da requisição:
 ```
   
 Caso o usuário do token seja o mesmo do id ou for administrador a responsta será:
-  
+
+```
+Status: 200 OK
+```
+
 ```
 {
-  "name": "André Reinaldo",
-  "email": "dagomail@kenzie.com.br",
-  "isAdmin": true,
-  "id": "a24f59ac-2aa2-4de2-99e5-31c01be3ff5d",
-  "createdOn": "2022-03-12T10:13:44.217Z",
-  "updatedOn": "2022-03-12T10:37:49.443Z"
+  "message": "User deleted with success"
 }
 ``` 
 
@@ -310,7 +309,7 @@ Status: 401 UNAUTHORIZED
 
 ```
 {
-  "message": "Only admins may update non self-profiles!"
+  "message": "Non admins must delete only its own profiles!"
 }
 ```
 
@@ -322,9 +321,8 @@ Status: 401 UNAUTHORIZED
 
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/en/4x/api.html)
-- [Nodemon](https://nodemon.io/)
-- [Sucrase](https://dev.to/evandersonvasconcelos/how-to-use-the-syntax-import-export-on-nodejs-o5b)
-- [Yup](https://github.com/jquense/yup)
+- [TypeORM](https://typeorm.io/#/)
+- [Docker](https://docs.docker.com/)
 - [JWT](https://github.com/auth0/node-jsonwebtoken)
 - [Bcrypt](https://github.com/kelektiv/node.bcrypt.js)
 - [Dotenv](https://www.npmjs.com/package/dotenv)
