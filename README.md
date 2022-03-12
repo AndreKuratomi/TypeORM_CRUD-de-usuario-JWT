@@ -10,7 +10,7 @@
 
 # Descrição
 
-<p><b>TypeORM_CRUD-de-usuario-JWT</b> é um serviço simples de gerenciamento de usuários com endpoints de autenticação com token. Esta aplicação utiliza o ambiente de execução Node.js e o framework Express.js</p>
+<p><b>TypeORM_CRUD-de-usuario-JWT</b> é um serviço simples de gerenciamento de usuários com endpoints de autenticação com token. Esta aplicação utiliza o ambiente de execução Node.js e o framework Express.js, além do ORM TypeORM e a plataforma Docker.</p>
 <br>
 
 # Instalação
