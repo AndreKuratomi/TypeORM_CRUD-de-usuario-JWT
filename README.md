@@ -276,7 +276,7 @@ Status: 401 UNAUTHORIZED
 
 <h4>Deleção de usuário (requer token):</h4>
 
-Deleção de usuário cadastrado (Método DELETE): <b>/users/uuid**/b> (ou localhost:3000/users/uuid**)
+Deleção de usuário cadastrado (Método DELETE): <b>/users/uuid**</b> (ou localhost:3000/users/uuid**)
 
 \*\*preencher com o uuid do usuário anteriormente cadastrado.
 
