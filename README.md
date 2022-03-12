@@ -77,7 +77,7 @@ JWT_EXPIRES_IN=tempo_de_vida_do_JWT (exemplos: 1000, "2 dias", "10h", "7d")
 
 # Utilização
 
-<p>Antes de passarmos para o API Client precisamos rodar os containers</p>
+<p>Antes de passarmos para o API Client precisamos rodar os containers do Docker</p>
 
 ```
 docker-compose up --build
@@ -177,7 +177,7 @@ Exemplo a ser colocado no body da requisição:
 (Requisição feita sem body)
 ```
 
-Se o usuário do token for administrador ("isAdmin": "true") a resposta esperada será:
+Se o usuário do token for administrador ("isAdmin": true) a resposta esperada será:
 
 ```
 Status: 200 OK
@@ -196,7 +196,7 @@ Status: 200 OK
 ]
 ```
 
-Se o usuário do token não for administrador ("isAdmin": "false") a resposta esperada será:
+Se o usuário do token não for administrador ("isAdmin": false) a resposta esperada será:
 
 ```
 Status: 401 UNAUTHORIZED
