@@ -239,7 +239,7 @@ Status: 200 OK
 
 <h4>Atualização de usuário (requer token):</h4>
 
-Atualização de dados do usuário cadastrado (Método PATCH): <b>/users/uuid**/b> (ou localhost:3000/users/uuid**)
+Atualização de dados do usuário cadastrado (Método PATCH): <b>/users/uuid**</b> (ou localhost:3000/users/uuid**)
 
 \*\*preencher com o uuid do usuário anteriormente cadastrado.
 
