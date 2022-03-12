@@ -246,10 +246,13 @@ Atualização de dados do usuário cadastrado (Método PATCH): <b>/users/uuid**<
 Exemplo a ser colocado no body da requisição:
 
 ```
-(Requisição feita sem body)
+{
+    "name": "André Reinaldo",
+    "email": "dagomail@kenzie.com.br"
+}
 ```
   
-Caso o usuário do token seja o mesmo do id ou for administrador a responsta será:
+Caso o usuário do token seja o mesmo do id ou for administrador a resposta será:
   
 ```
 {
