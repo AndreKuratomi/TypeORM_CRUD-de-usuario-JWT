@@ -265,7 +265,7 @@ Caso o usuário do token seja o mesmo do id ou for administrador a resposta ser�
 }
 ``` 
 
-O único campo que não pode ser alterado é o "isAdmin". Pois se o usuário tentar atualizá-lo a resposta será:
+O único campo que não pode ser alterado é o "isAdmin". Caso o usuário tente atualizá-lo a resposta será:
 
 ```
 {
