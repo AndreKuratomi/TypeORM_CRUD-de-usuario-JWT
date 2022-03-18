@@ -28,7 +28,7 @@ git init
 ```
 
 <br>
-<h5>1. Fazer o clone do reposítório <span style="text-decoration: underline">Users service</span> na sua máquina pelo terminal do computador ou pelo do IDE:</h5>
+<h5>1. Fazer o clone do reposítório <span style="text-decoration: underline">TypeORM_CRUD-de-usuario-JWT</span> na sua máquina pelo terminal do computador ou pelo do IDE:</h5>
 
 ```
 git clone git@gitlab.com:ABKURA/typeorm-crud-de-usuario-jwt.git
